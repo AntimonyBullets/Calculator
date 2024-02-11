@@ -18,95 +18,94 @@ let divide = document.getElementById("divide");
 let ac = document.getElementById("ac");
 let del = document.getElementById("del");
 let str = "";
-one.addEventListener('click', (event) => {
+function oneFunc() {
     str = str.concat('1');
     screenTxt.innerHTML = str;
-})
-two.addEventListener('click', (event) => {
+}
+function twoFunc() {
     str = str.concat('2');
     screenTxt.innerHTML = str;
-})
-three.addEventListener('click', (event) => {
+}
+function threeFunc() {
     str = str.concat('3');
     screenTxt.innerHTML = str;
-})
-four.addEventListener('click', (event) => {
+}
+function fourFunc() {
     str = str.concat('4');
     screenTxt.innerHTML = str;
-})
-five.addEventListener('click', (event) => {
+}
+function fiveFunc() {
     str = str.concat('5');
     screenTxt.innerHTML = str;
-})
-six.addEventListener('click', (event) => {
+}
+function sixFunc() {
     str = str.concat('6');
     screenTxt.innerHTML = str;
-})
-seven.addEventListener('click', (event) => {
+}
+function sevenFunc() {
     str = str.concat('7');
     screenTxt.innerHTML = str;
-})
-eight.addEventListener('click', (event) => {
+}
+function eightFunc() {
     str = str.concat('8');
     screenTxt.innerHTML = str;
-})
-nine.addEventListener('click', (event) => {
+}
+function nineFunc() {
     str = str.concat('9');
     screenTxt.innerHTML = str;
-})
-zero.addEventListener('click', (event) => {
+}
+function zeroFunc() {
     str = str.concat('0');
     screenTxt.innerHTML = str;
-})
-dot.addEventListener('click', (event) => {
+}
+function dotFunc() {
     if (str[str.length - 1] !== '+' && str[str.length - 1] !== '-' && str[str.length - 1] !== '*' && str[str.length - 1] !== '/' && str[str.length - 1] !== '.' && str !== "") {
         str = str.concat('.');
         screenTxt.innerHTML = str;
     }
-})
-
-add.addEventListener('click', (event) => {
+}
+function addFunc() {
     if (str[str.length - 1] !== '+' && str[str.length - 1] !== '-' && str[str.length - 1] !== '*' && str[str.length - 1] !== '/' && str !== "" && str[str.length - 1] !== '.') {
         str = str.concat('+');
         screenTxt.innerHTML = str;
     }
-})
-subtract.addEventListener('click', (event) => {
+}
+function subtractFunc() {
     if (str[str.length - 1] !== '+' && str[str.length - 1] !== '-' && str[str.length - 1] !== '*' && str[str.length - 1] !== '/' && str[str.length - 1] !== '.') {
         str = str.concat('-');
         screenTxt.innerHTML = str;
     }
-})
-multiply.addEventListener('click', (event) => {
+}
+function multiplyFunc() {
     if (str[str.length - 1] !== '+' && str[str.length - 1] !== '-' && str[str.length - 1] !== '*' && str[str.length - 1] !== '/' && str !== "" && str[str.length - 1] !== '.') {
         str = str.concat('*');
         screenTxt.innerHTML = str;
-
     }
-})
-divide.addEventListener('click', (event) => {
+}
+function divideFunc() {
     if (str[str.length - 1] !== '+' && str[str.length - 1] !== '-' && str[str.length - 1] !== '*' && str[str.length - 1] !== '/' && str !== "" && str[str.length - 1] !== '.') {
         str = str.concat('/');
         screenTxt.innerHTML = str;
     }
-})
-del.addEventListener('click', (event) => {
+}
+function delFunc() {
     str = str.slice(0, -1);
     screenTxt.innerHTML = str;
-})
-ac.addEventListener('click', () => {
+}
+function acFunc() {
     str = "";
     screenTxt.innerHTML = str;
-})
+}
 // Main logic
-let originalstr;
-let opIndex, leftIndex, rightIndex;
-let LeftSlice, rightSlice, replaceSlice;
-let plusSign = '+';
-let firstOperand, secondOperand;
-let result, resultString;
-let check = true;
-equals.addEventListener('click', () => {
+
+function equalsFunc() {
+    let originalstr;
+    let opIndex, leftIndex, rightIndex;
+    let LeftSlice, rightSlice;
+    let plusSign = '+';
+    let firstOperand, secondOperand;
+    let result, resultString;
+    let check = true;
     originalstr = str;
     check = true;
     while (check) {
@@ -120,7 +119,7 @@ equals.addEventListener('click', () => {
                 }
             }
         }
-        if (opIndex < 0) {
+        if (opIndex < 0 || opIndex === str.length - 1) {
             break;
         }
         for (let j = opIndex - 1; str[j] !== '+' && str[j] !== '*' && str[j] !== '/'; j--) {
@@ -156,9 +155,88 @@ equals.addEventListener('click', () => {
             resultString = plusSign.concat(resultString);
         }
         str = str.slice(0, leftIndex) + resultString + str.slice(rightIndex);
-        screenTxt.innerHTML = originalstr + ' = ' + str;
+        screenTxt.innerHTML = str;
     }
     if (str.indexOf('+') === -1 && str.indexOf('-', 1) === -1 && str.indexOf('*') === -1 && str.indexOf('/') === -1) {
         check = false;
+    }
+}
+one.addEventListener('click', oneFunc)
+two.addEventListener('click', twoFunc)
+three.addEventListener('click', threeFunc)
+four.addEventListener('click', fourFunc)
+five.addEventListener('click', fiveFunc)
+six.addEventListener('click', sixFunc)
+seven.addEventListener('click', sevenFunc)
+eight.addEventListener('click', eightFunc)
+nine.addEventListener('click', nineFunc)
+zero.addEventListener('click', zeroFunc)
+dot.addEventListener('click', dotFunc)
+add.addEventListener('click', addFunc)
+subtract.addEventListener('click', subtractFunc)
+multiply.addEventListener('click', multiplyFunc)
+divide.addEventListener('click', divideFunc)
+del.addEventListener('click', delFunc)
+ac.addEventListener('click', acFunc)
+equals.addEventListener('click', equalsFunc)
+
+document.addEventListener('keydown', (e) => {
+    switch (e.key) {
+        case '1':
+            oneFunc();
+            break;
+        case '2':
+            twoFunc();
+            break;
+        case '3':
+            threeFunc();
+            break;
+        case '4':
+            fourFunc();
+            break;
+        case '5':
+            fiveFunc();
+            break;
+        case '6':
+            sixFunc();
+            break;
+        case '7':
+            sevenFunc();
+            break;
+        case '8':
+            eightFunc();
+            break;
+        case '9':
+            nineFunc();
+            break;
+        case '0':
+            zeroFunc();
+            break;
+        case '.':
+            dotFunc();
+            break;
+        case '+':
+            addFunc();
+            break;
+        case '-':
+            subtractFunc();
+            break;
+        case '*':
+            multiplyFunc();
+            break;
+        case '/':
+            divideFunc();
+            break;
+        case 'Backspace':
+            delFunc();
+            break;
+        case 'Escape':
+            acFunc();
+            break;
+        case 'Enter':
+            equalsFunc();
+            break;
+        default:
+            break;
     }
 })
